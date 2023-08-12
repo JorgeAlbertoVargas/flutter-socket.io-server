@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket Server</title>
+</head>
+<body>
+    <h1>Ejemplo de Uso de Sockets Server</h1>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        //Conectarse al Server
+        socket.on('connect',function(){
+            console.log('Conectado al Servidor')
+        });
+
+        //Desconectar del Server
+        socket.on('disconnect',function(){
+            console.log('Desconectado del Servidor')
+        });
+
+        //Emitir un Mensaje |El Backend Escucha
+        socket.emit('Mensaje',{Nombre:'Jorge Vargas'});
+
+        //Escuchar Mensaje desde el Backen
+        socket.on('Mensaje',function(payload){
+            console.log('Escuchando Backend:',payload);
+        });
+    </script>
+</body>
+</html>
